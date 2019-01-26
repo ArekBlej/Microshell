@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1547663510 source:c:\users\gothi\desktop\projekty - c\microshell\main.c
-	<stdio.h>
-	<unistd.h>
-	<string.h>
-	<stdlib.h>
-	<limits.h>
-
