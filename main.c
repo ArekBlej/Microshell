@@ -27,7 +27,7 @@ char **tokens(char *commands)
     char **elementy = malloc((count + 1) *sizeof(char*));
     int i = 0;
 
-    for (token = strtok(commands, " "); token && (token + strlen(token)) <= comm                                                                                        End; token = strtok(token + strlen(token) + 1, " "), ++i)
+    for (token = strtok(commands, " "); token && (token + strlen(token)) <= commEnd; token = strtok(token + strlen(token) + 1, " "), ++i)
     {
         elementy[i] = token;
         if (elementy[i][strlen(elementy[i]) - 1] == '\n')
@@ -58,7 +58,7 @@ void command_quit()
 
 void command_help()
 {
-    printf("\nAuthor of microshell: Arkadiusz Blejwas, first year student of com                                                                                        puter science at WMI UAM.\n");
+    printf("\nAuthor of microshell: Arkadiusz Blejwas, first year student of computer science at WMI UAM.\n");
     printf("\nCommands:\n");
     printf("cd - This command changes current directory\n");
     printf("arguments: [..] or [direct_path] or [indirect_path]\n");
@@ -68,22 +68,22 @@ void command_help()
     printf("arguments: [directory] \n");
     printf("rmdir - This command removes directory\n");
     printf("arguments: [directory] \n");
-    printf("color - This cammand changes color of font or color of background\n"                                                                                        );
-    printf("arguments: [default] or [[[black] or [white] or [yellow] or [red] or                                                                                         [blue] or [green]] and [[font] or [background]]] or [[inverse on] or [inverse o                                                                                        ff]]\n");
+    printf("color - This cammand changes color of font or color of background\n");
+    printf("arguments: [default] or [[[black] or [white] or [yellow] or [red] or [blue] or [green]] and [[font] or [background]]] or [[inverse on] or [inverse off]]\n");
     printf("font - changes settings of font\n");
-    printf("arguments: [[bold] or [italic] or [strikethrough] or [underline]] an                                                                                        d [[off] or [on]]\n");
-    printf("ls - This command list the files and directories of current director                                                                                        y\n");
+    printf("arguments: [[bold] or [italic] or [strikethrough] or [underline]] and [[off] or [on]]\n");
+    printf("ls - This command list the files and directories of current directory\n");
     printf("quit - This command closes the program\n");
     printf("help - This command displays a help section\n");
     printf("hostname - This command shows host name\n");
-    printf("\nRemember, You can write whole words(except arguments) in capital l                                                                                        etters or lowercase letters. \nIf you write an argument, do not write it in squa                                                                                        re brackets. Good luck.\n\n");
+    printf("\nRemember, You can write whole words(except arguments) in capital letters or lowercase letters. \nIf you write an argument, do not write it in square brackets. Good luck.\n\n");
 }
 
 void command_hostname()
 {
     char name[256];
     gethostname(name, 256);
-    printf("%s\n", name);
+    printf("\n%s\n\n", name);
 }
 
 void command_mkdir(char **elements)
@@ -157,33 +157,33 @@ void command_color(char **elements)
 {
     if (strcmp(elements[1], "default") == 0)
         printf("\x1b[0m\n");
-    else if (strcmp(elements[1], "white") == 0 && strcmp(elements[2], "font") ==                                                                                         0)
+    else if (strcmp(elements[1], "white") == 0 && strcmp(elements[2], "font") == 0)
         printf("\x1b[37m\n");
-    else if (strcmp(elements[1], "black") == 0 && strcmp(elements[2], "font") ==                                                                                         0)
+    else if (strcmp(elements[1], "black") == 0 && strcmp(elements[2], "font") == 0)
         printf("\x1b[30m\n");
-    else if (strcmp(elements[1], "yellow") == 0 && strcmp(elements[2], "font") =                                                                                        = 0)
+    else if (strcmp(elements[1], "yellow") == 0 && strcmp(elements[2], "font") == 0)
         printf("\x1b[33m\n");
-    else if (strcmp(elements[1], "blue") == 0 && strcmp(elements[2], "font") ==                                                                                         0)
+    else if (strcmp(elements[1], "blue") == 0 && strcmp(elements[2], "font") == 0)
         printf("\x1b[34m\n");
-    else if (strcmp(elements[1], "red") == 0 && strcmp(elements[2], "font") == 0                                                                                        )
+    else if (strcmp(elements[1], "red") == 0 && strcmp(elements[2], "font") == 0)
         printf("\x1b[31m\n");
-    else if (strcmp(elements[1], "green")==0 && strcmp(elements[2], "font") == 0                                                                                        )
+    else if (strcmp(elements[1], "green")==0 && strcmp(elements[2], "font") == 0)
         printf("\x1b[32m");
-    else if (strcmp(elements[1], "black") == 0 && strcmp(elements[2], "backgroun                                                                                        d") == 0)
+    else if (strcmp(elements[1], "black") == 0 && strcmp(elements[2], "background") == 0)
         printf("\x1b[40m\n");
-    else if (strcmp(elements[1], "yellow") == 0 && strcmp(elements[2], "backgrou                                                                                        nd") == 0)
+    else if (strcmp(elements[1], "yellow") == 0 && strcmp(elements[2], "background") == 0)
         printf("\x1b[43m\n");
-    else if (strcmp(elements[1], "blue") == 0 && strcmp(elements[2], "background                                                                                        ") == 0)
+    else if (strcmp(elements[1], "blue") == 0 && strcmp(elements[2], "background") == 0)
         printf("\x1b[44m\n");
-    else if (strcmp(elements[1], "red") == 0 && strcmp(elements[2], "background"                                                                                        ) == 0)
+    else if (strcmp(elements[1], "red") == 0 && strcmp(elements[2], "background") == 0)
         printf("\x1b[41m\n");
-    else if (strcmp(elements[1], "green")==0 && strcmp(elements[2], "background"                                                                                        ) == 0)
+    else if (strcmp(elements[1], "green")==0 && strcmp(elements[2], "background") == 0)
         printf("\x1b[42m\n");
-    else if (strcmp(elements[1], "white") == 0 && strcmp(elements[2], "backgroun                                                                                        d") == 0)
+    else if (strcmp(elements[1], "white") == 0 && strcmp(elements[2], "background") == 0)
         printf("\x1b[47m\n");
-    else if (strcmp(elements[1], "inverse") == 0 && strcmp(elements[2], "on") ==                                                                                         0)
+    else if (strcmp(elements[1], "inverse") == 0 && strcmp(elements[2], "on") == 0)
         printf("\x1b[7m\n");
-    else if (strcmp(elements[1], "inverse") == 0 && strcmp(elements[2], "off") =                                                                                        = 0)
+    else if (strcmp(elements[1], "inverse") == 0 && strcmp(elements[2], "off") == 0)
         printf("\x1b[27m\n");
     else
         printf("\nThere is no such argument\n\n");
@@ -193,19 +193,19 @@ void command_font(char **elements)
 {
     if (strcmp(elements[1], "bold") == 0 && strcmp(elements[2], "on") == 0)
         printf("\x1b[1m\n");
-    else if (strcmp(elements[1], "italic") == 0 && strcmp(elements[2], "on") ==                                                                                         0)
+    else if (strcmp(elements[1], "italic") == 0 && strcmp(elements[2], "on") == 0)
         printf("\x1b[3m\n");
-    else if (strcmp(elements[1], "underline") == 0 && strcmp(elements[2], "on")                                                                                         == 0)
+    else if (strcmp(elements[1], "underline") == 0 && strcmp(elements[2], "on") == 0)
         printf("\x1b[4m\n");
-    else if (strcmp(elements[1], "strikethrough") == 0 && strcmp(elements[2], "o                                                                                        n") == 0)
+    else if (strcmp(elements[1], "strikethrough") == 0 && strcmp(elements[2], "on") == 0)
         printf("\x1b[9m\n");
-    else if (strcmp(elements[1], "bold") == 0 && strcmp(elements[2], "off") == 0                                                                                        )
+    else if (strcmp(elements[1], "bold") == 0 && strcmp(elements[2], "off") == 0)
         printf("\x1b[22m\n");
-    else if (strcmp(elements[1], "italic") == 0 && strcmp(elements[2], "off") ==                                                                                         0)
+    else if (strcmp(elements[1], "italic") == 0 && strcmp(elements[2], "off") == 0)
         printf("\x1b[23m\n");
-    else if (strcmp(elements[1], "underline") == 0 && strcmp(elements[2], "off")                                                                                         == 0)
+    else if (strcmp(elements[1], "underline") == 0 && strcmp(elements[2], "off") == 0)
         printf("\x1b[24m\n");
-    else if (strcmp(elements[1], "strikethrough") == 0 && strcmp(elements[2], "o                                                                                        ff") == 0)
+    else if (strcmp(elements[1], "strikethrough") == 0 && strcmp(elements[2], "off") == 0)
         printf("\x1b[29m\n");
     else
         printf("\nThere is no such arguemtn\n\n");
@@ -236,56 +236,56 @@ int main()
             strcpy(previous_path, command_cd(elements, previous_path));
         }
 
-        else if (strcmp(elements[0], "cp") == 0 || strcmp(elements[0], "CP") ==                                                                                         0)
+        else if (strcmp(elements[0], "cp") == 0 || strcmp(elements[0], "CP") == 0)
         {
             command_cp(elements);
         }
 
-        else if (strcmp(elements[0], "mkdir") == 0 || strcmp(elements[0], "MKDIR                                                                                        ") == 0)
+        else if (strcmp(elements[0], "mkdir") == 0 || strcmp(elements[0], "MKDIR") == 0)
         {
             command_mkdir(elements);
         }
 
-        else if (strcmp(elements[0], "rmdir") == 0 || strcmp(elements[0], "RMDIR                                                                                        ") == 0)
+        else if (strcmp(elements[0], "rmdir") == 0 || strcmp(elements[0], "RMDIR") == 0)
         {
             command_rmdir(elements);
         }
 
-        else if (strcmp(elements[0], "ls") == 0 || strcmp(elements[0], "LS") ==                                                                                         0)
+        else if (strcmp(elements[0], "ls") == 0 || strcmp(elements[0], "LS") == 0)
         {
             command_ls();
         }
 
-        else if (strcmp(elements[0], "color") == 0 || strcmp(elements[0], "COLOR                                                                                        ") == 0)
+        else if (strcmp(elements[0], "color") == 0 || strcmp(elements[0], "COLOR") == 0)
         {
             command_color(elements);
         }
 
-        else if (strcmp(elements[0], "font") == 0 || strcmp(elements[0], "FONT")                                                                                         == 0)
+        else if (strcmp(elements[0], "font") == 0 || strcmp(elements[0], "FONT") == 0)
         {
             command_font(elements);
         }
 
-        else if (strcmp(elements[0], "hostname") == 0 || strcmp(elements[0], "HO                                                                                        STNAME") == 0)
+        else if (strcmp(elements[0], "hostname") == 0 || strcmp(elements[0], "HOSTNAME") == 0)
         {
             command_hostname();
         }
 
-        else if (strcmp(elements[0], "quit") == 0 || strcmp(elements[0], "QUIT")                                                                                         == 0)
+        else if (strcmp(elements[0], "quit") == 0 || strcmp(elements[0], "QUIT") == 0)
         {
             command_quit();
             break;
         }
 
-        else if (strcmp(elements[0], "help") == 0 || strcmp(elements[0], "HELP")                                                                                         == 0)
+        else if (strcmp(elements[0], "help") == 0 || strcmp(elements[0], "HELP") == 0)
         {
             command_help();
         }
         else if ((pid = fork()) == 0)
         {
             execvp(elements[0], elements);
-            if (strcmp(elements[0], "") != 0)
-                fprintf(stderr,"\nThere is no such command or argument\n\n", ele                                                                                        ments[0]);
+          	if (strcmp(elements[0], "") != 0)
+                fprintf(stderr,"\nThere is no such command or argument\n\n", elements[0]);
             exit(124);
         }
         else if (pid == -1)
