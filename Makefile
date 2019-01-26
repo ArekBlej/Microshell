@@ -4,5 +4,5 @@ all:
 clean:
   rm microshell
   
-run
+run:
   ./microshell
